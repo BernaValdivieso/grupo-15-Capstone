@@ -41,7 +41,8 @@ def crear_plan(combinaciones_puertos):
         # SE DEFINE LA CANTIDAD DE PUERTOS VISITADOS Y EL ADICIONAL 
         visitados = puertos_visitados(combinacion)
                 
-        # 1 PUERTO VISITADO
+        # 1 UNIDAD
+        
         if combinacion.count(0) == 4:
             if (combinacion.count(1) > 0) or (combinacion.count(2) > 0):
                 planes[combinacion] = 50
@@ -52,8 +53,12 @@ def crear_plan(combinaciones_puertos):
             if (combinacion.count(7) > 0) or (combinacion.count(8) > 0):
                 planes[combinacion] = 58
             
-        # 2 PUERTOS VISITADO
+        # 2 UNIDADES
+        
         if combinacion.count(0) == 3:
+            
+            # SE ENTREGAN LAS 2 UNIDADES EN EL MISMO PUERTO
+            
             if visitados == 1:
                 if (combinacion.count(1) > 0) or (combinacion.count(2) > 0):
                     planes[combinacion] = 49 * 2
@@ -63,6 +68,9 @@ def crear_plan(combinaciones_puertos):
                     planes[combinacion] = 52.8 * 2
                 if (combinacion.count(7) > 0) or (combinacion.count(8) > 0):
                     planes[combinacion] = 57.2 * 2
+            
+            # SE ENTREGA EN 2 PUERTOS DISTINTOS
+                    
             if visitados == 2:
                 # UNA UNIDAD EN REGIÓN 1 Y OTRA EN REGIÓN 1
                 if (combinacion.count(1) + combinacion.count(2) == 2):
@@ -92,14 +100,106 @@ def crear_plan(combinaciones_puertos):
                 if (combinacion.count(7) + combinacion.count(8) == 2):
                     planes[combinacion] = 60.1 * 2
     
-        # 3 PUERTOS VISITADO
-        if combinacion.count(0) == 2:
-            pass
+        # 3 UNIDADES
         
-        # 4 PUERTOS VISITADO        
+        if combinacion.count(0) == 2:
+            
+            # SE ENTREGAN LAS 3 UNIDADES EN EL MISMO PUERTO 
+            
+            if visitados == 1:
+                if (combinacion.count(1) > 0) or (combinacion.count(2) > 0):
+                    planes[combinacion] = 44 * 3
+                if (combinacion.count(3) > 0) or (combinacion.count(4) > 0):
+                    planes[combinacion] = 44 * 3
+                if (combinacion.count(5) > 0) or (combinacion.count(6) > 0):
+                    planes[combinacion] = 47.2 * 3
+                if (combinacion.count(7) > 0) or (combinacion.count(8) > 0):
+                    planes[combinacion] = 52.6 * 3
+                    
+            # SE ENTREGA EN DOS PUERTOS DISTINTOS
+            
+            if visitados == 2:
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 1
+                if (combinacion.count(1) + combinacion.count(2) == 2):
+                    planes[combinacion] = 47.5 * 3
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 2
+                if (combinacion.count(1) + combinacion.count(2) == 1) and (combinacion.count(3) + combinacion.count(4) == 1):
+                    planes[combinacion] = 46.5 * 3
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 3
+                if (combinacion.count(1) + combinacion.count(2) == 1) and (combinacion.count(5) + combinacion.count(6) == 1):
+                    planes[combinacion] = 49.5 * 3
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 4
+                if (combinacion.count(1) + combinacion.count(2) == 1) and (combinacion.count(7) + combinacion.count(8) == 1):
+                    planes[combinacion] = 56 * 3
+                # EN REGIÓN 2 Y OTRA EN REGIÓN 3
+                if (combinacion.count(3) + combinacion.count(4) == 1) and (combinacion.count(5) + combinacion.count(6) == 1):
+                    planes[combinacion] = 49.5 * 3
+                # EN REGIÓN 2 Y OTRA EN REGIÓN 4
+                if (combinacion.count(3) + combinacion.count(4) == 1) and (combinacion.count(7) + combinacion.count(8) == 1):
+                    planes[combinacion] = 56 * 3
+                # EN REGIÓN 3 Y OTRA EN REGIÓN 3
+                if (combinacion.count(5) + combinacion.count(6) == 2):
+                    planes[combinacion] = 50.7 * 3
+                # EN REGIÓN 3 Y OTRA EN REGIÓN 4
+                if (combinacion.count(5) + combinacion.count(6) == 1) and (combinacion.count(7) + combinacion.count(8) == 1):
+                    planes[combinacion] = 57.2 * 3
+                # EN REGIÓN 4 Y OTRA EN REGIÓN 4
+                if (combinacion.count(7) + combinacion.count(8) == 2):
+                    planes[combinacion] = 57.6 * 3
+                    
+            # SE ENTREGA EN 3 PUERTOS DISTINTOS
+            
+        
+        # 4 UNIDADES
+        
         if combinacion.count(0) == 1:
-            pass
-
+            # SE ENTREGAN LAS 4 UNIDADES EN EL MISMO PUERTO 
+            if visitados == 1:
+                if (combinacion.count(1) > 0) or (combinacion.count(2) > 0):
+                    planes[combinacion] = 43 * 4
+                if (combinacion.count(3) > 0) or (combinacion.count(4) > 0):
+                    planes[combinacion] = 43 * 4
+                if (combinacion.count(5) > 0) or (combinacion.count(6) > 0):
+                    planes[combinacion] = 45.8 * 4
+                if (combinacion.count(7) > 0) or (combinacion.count(8) > 0):
+                    planes[combinacion] = 51.6 * 4
+                    
+            # SE ENTREGA EN DOS PUERTOS DISTINTOS
+            
+            if visitados == 2:
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 1
+                if (combinacion.count(1) + combinacion.count(2) == 2):
+                    planes[combinacion] = 46.5 * 4
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 2
+                if (combinacion.count(1) + combinacion.count(2) == 1) and (combinacion.count(3) + combinacion.count(4) == 1):
+                    planes[combinacion] = 45.5 * 4
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 3
+                if (combinacion.count(1) + combinacion.count(2) == 1) and (combinacion.count(5) + combinacion.count(6) == 1):
+                    planes[combinacion] = 48.5 * 4
+                # EN REGIÓN 1 Y OTRA EN REGIÓN 4
+                if (combinacion.count(1) + combinacion.count(2) == 1) and (combinacion.count(7) + combinacion.count(8) == 1):
+                    planes[combinacion] = 55 * 4
+                # EN REGIÓN 2 Y OTRA EN REGIÓN 3
+                if (combinacion.count(3) + combinacion.count(4) == 1) and (combinacion.count(5) + combinacion.count(6) == 1):
+                    planes[combinacion] = 48.5 * 4
+                # EN REGIÓN 2 Y OTRA EN REGIÓN 4
+                if (combinacion.count(3) + combinacion.count(4) == 1) and (combinacion.count(7) + combinacion.count(8) == 1):
+                    planes[combinacion] = 55 * 4
+                # EN REGIÓN 3 Y OTRA EN REGIÓN 3
+                if (combinacion.count(5) + combinacion.count(6) == 2):
+                    planes[combinacion] = 49.3 * 4
+                # EN REGIÓN 3 Y OTRA EN REGIÓN 4
+                if (combinacion.count(5) + combinacion.count(6) == 1) and (combinacion.count(7) + combinacion.count(8) == 1):
+                    planes[combinacion] = 55.8 * 4
+                # EN REGIÓN 4 Y OTRA EN REGIÓN 4
+                if (combinacion.count(7) + combinacion.count(8) == 2):
+                    planes[combinacion] = 56.6 * 4
+                    
+            # SE ENTREGA EN 3 PUERTOS DISTINTOS
+            
+            # SE ENTREGA EN 4 PUERTOS DISTINTOS 
+            
+            
         # 5 PUERTOS VISITADO        
         if combinacion.count(0) == 0:
             pass
