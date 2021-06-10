@@ -6,6 +6,7 @@
 
 from numpy import *
 from pandas import *
+from planes_empresa_1 import planes_empresa1
 from planes_empresa_2 import planes_empresa2
 from planes_empresa_3 import planes_empresa3
 from planes_empresa_4 import planes_empresa4
@@ -95,7 +96,7 @@ clientes = {1:  Cliente(1, 110000, 30000, 20000, 40000, 1),
 ### 1 ###
 #costo de trasladar una tonelada en el COA f para el plan p
 #FALTA AGREGAR EMPRESA1
-C_f_p = {"empresa2": planes_empresa2, "empresa3": planes_empresa3, "empresa4": planes_empresa4}
+C_f_p = {"empresa1": planes_empresa1, "empresa2": planes_empresa2, "empresa3": planes_empresa3, "empresa4": planes_empresa4}
 
 ### 2 ### 
 
