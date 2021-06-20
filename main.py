@@ -21,10 +21,14 @@ q = m.addVars(Q_m_c, vtype=GRB.INTEGER, lb = 0, name="q")
 s = m.addVars(S_m, vtype=GRB.INTEGER, lb = 0, name="s")
 
 # Función Objetivo
-m.setObjective(quicksum(x[m,f,p] for m, f, p in X_m_f_p), GRB.MINIMIZE)
+m.setObjective(quicksum(x[m,f,p] for m, f, p in X_m_f_p), GRB.MAXIMIZE)
 
 # Restricciones COA
-m.addConstrs(quicksum(x[m,f,p] for p in X_m_f_p) <= 1 for m, f in X_m_f_p)
+#m.addConstrs(quicksum(x[m,f,p] for p in X_m_f_p) <= 1 for m, f in X_m_f_p)
+m.addConstrs((x.sum('*', '*', p) <= 1 for p in planes))
 
+m.update()
+m.optimize()
+m.printAttr('x')
 # Restricciones Clientes
 # Restricciones Producción
