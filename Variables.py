@@ -34,6 +34,12 @@ planes_contrato_3 = {'contrato': 3, 'planes': aux_list3}
 planes_contrato_4 = {'contrato': 4, 'planes': aux_list4}
 
 planes_contratos = [planes_contrato_1, planes_contrato_2, planes_contrato_3, planes_contrato_4]
+planes = []
+for plan in planes_contratos:
+    for i in plan['planes']:
+        if i not in planes:
+            planes.append(i)
+
 #planes_contratos = [planes_contrato_1]
 
 def generador_de_x(meses,planes_contratos):

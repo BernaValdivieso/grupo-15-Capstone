@@ -56,7 +56,7 @@ clientes = {1:  Cliente(1, 110000, 30000, 20000, 40000, 1),
 
 
 # Puertos; puerto: región
-puertos = {1: 1,
+puertos_dict = {1: 1,
            2: 1,
            3: 2,
            4: 2,
