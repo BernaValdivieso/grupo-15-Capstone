@@ -64,7 +64,8 @@ def generador_de_y(meses,puertos,potenciales_cargas_spot):
         for puerto in puertos:
             for carga in potenciales_cargas_spot:
                 #combinaciones.append({'mes':mes,'puerto':puerto,'carga':carga})
-                combinaciones.append((mes, puerto, carga))
+                if (mes, puerto) not in combinaciones:
+                    combinaciones.append((mes, puerto))
     return combinaciones
 
 Y_m_d  = generador_de_y(meses,puertos,potenciales_cargas_spot)
@@ -108,7 +109,8 @@ def generador_de_q(clientes,cargas,meses):
         for cliente in clientes:
             for carga in cargas:
                 #combinaciones.append({'mes':mes,'cliente':cliente,'carga':carga})
-                combinaciones.append((mes, cliente, carga))
+                if (mes, cliente) not in combinaciones:
+                    combinaciones.append((mes, cliente))
     return combinaciones
 
 Q_m_c = generador_de_q(clientes,cargas,meses)
@@ -120,7 +122,8 @@ Q_m_c = generador_de_q(clientes,cargas,meses)
 # S_m
 # potenciales cargas por ventas cortas en el mes m
 
-minimo = 0 ############ SE DEBEN DEFINIR BIEN 
-maximo = 10
+minimo = 1 ############ SE DEBEN DEFINIR BIEN 
+maximo = 13
 S_m = [i for i in range(minimo,maximo)]
+#print(S_m)
 
