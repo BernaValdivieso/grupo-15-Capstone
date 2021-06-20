@@ -89,8 +89,8 @@ def crear_plan(combinaciones_puertos):
     return planes
     
 planes_empresa4 = crear_plan(combinaciones_puertos)
-print(crear_plan(combinaciones_puertos))
-print("")
-print("Hay "+str(len(crear_plan(combinaciones_puertos)))+" planes")
-t2 = time.time()
-print("Tiempo en correr: "+str(t2-t1)+" segundos")
+# print(crear_plan(combinaciones_puertos))
+# print("")
+# print("Hay "+str(len(crear_plan(combinaciones_puertos)))+" planes")
+# t2 = time.time()
+# print("Tiempo en correr: "+str(t2-t1)+" segundos")

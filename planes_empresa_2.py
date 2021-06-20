@@ -140,6 +140,6 @@ def crear_plan(combinaciones_puertos):
 
     return planes
 
-print(crear_plan(combinaciones_puertos))
+#print(crear_plan(combinaciones_puertos))
 
 planes_empresa2 = crear_plan(combinaciones_puertos)

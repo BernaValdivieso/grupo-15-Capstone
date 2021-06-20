@@ -1624,6 +1624,6 @@ def crear_plan(combinaciones_puertos):
 
 
 
-print(len(crear_plan(combinaciones_puertos)))
+#print(len(crear_plan(combinaciones_puertos)))
 
 planes_empresa1 = crear_plan(combinaciones_puertos)
