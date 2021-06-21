@@ -8,6 +8,8 @@ meses = [i for i in range(1,13)]
 contratos = [1, 2, 3, 4]
 ### planes
 ### puertos
+clientes_id = [i for i in range(1,26)]
+puerto_id = [i for i in range(1,9)]
 
 # Crear Modelo
 m = Model("planificacion")
@@ -21,14 +23,24 @@ q = m.addVars(Q_m_c, vtype=GRB.INTEGER, lb = 0, name="q")
 s = m.addVars(S_m, vtype=GRB.INTEGER, lb = 0, name="s")
 
 # Función Objetivo
-m.setObjective(quicksum(x[m,f,p] for m, f, p in X_m_f_p), GRB.MAXIMIZE)
+m.setObjective(quicksum(x[m,f,p] for m, f, p in X_m_f_p), GRB.MINIMIZE)
 
-# Restricciones COA
-#m.addConstrs(quicksum(x[m,f,p] for p in X_m_f_p) <= 1 for m, f in X_m_f_p)
-m.addConstrs((x.sum('*', '*', p) <= 1 for p in planes))
+# Restricciones COA 
+# Restricción 3
+for mes in meses:
+    print('Mes: ', mes)
+    for puerto in puerto_id:
+        print('Puerto: ', puerto)
+        m.addConstrs(sum(q[mes, cliente] for cliente in clientes_id) == b[mes, puerto])
+        #m.addConstrs(b[mes, puerto] == 1)
 
-m.update()
-m.optimize()
-m.printAttr('x')
+#m.addConstrs(b[mes, puerto] == 1 for mes in meses for puerto in puerto_id)
+
+
+#m.addConstrs((x.sum('*', '*', p) <= 1 for p in planes))
+
+# m.update()
+# m.optimize()
+# m.printAttr('x')
 # Restricciones Clientes
 # Restricciones Producción

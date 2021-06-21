@@ -91,9 +91,8 @@ def generador_de_y(meses,puertos,cargas):
     combinaciones = []
     for mes in meses:
         for puerto in puertos:
-            for carga in cargas:
-                #combinaciones.append({'mes':mes,'puerto':puerto,'carga':carga})
-                combinaciones.append((mes, puerto, carga))
+            if (mes, puerto) not in combinaciones:
+                combinaciones.append((mes, puerto))
     return combinaciones
 
 B_m_d = generador_de_y(meses,puertos,cargas)
