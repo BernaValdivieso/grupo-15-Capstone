@@ -161,6 +161,24 @@ obj = m.getObjective()
 var = m.getVars()
 m.printAttr('X')
 
+
+def funcion_costo(empresa, plan):
+    if empresa == 1:
+        costo = int(planes_empresa1[plan]) * 10000
+        return costo
+    if empresa == 2:
+        costo = int(planes_empresa2[plan]) * 10000
+        return costo
+    if empresa == 3:
+        costo = int(planes_empresa3[plan]) * 10000
+        return costo
+    if empresa == 4:
+        costo = int(planes_empresa4[plan]) * 10000
+        return costo
+    
+    
+
+
 x1 = list()
 x2 = list()
 x3 = list()
@@ -170,49 +188,164 @@ b = list()
 q = list()
 s = list()
 
-dic = {'nombre': [],'mes': [],'contrato': [],'plan': [],'cliente': [],'puerto': [],'valor':[]}
+dic = {'nombre': [],'mes': [],'contrato': [],'plan': [],'cliente': [],'puerto': [],'valor':[],'costo':[]}
 
 for v in m.getVars():
     nombre = str(v.varName)
     valor = str(v.x)
-    if 'x1' in nombre:
+    if 'x1' in nombre and valor == '1.0':
         x1.append([nombre,valor])
-    if 'x2' in nombre:
+    if 'x2' in nombre and valor == '1.0':
         x2.append([nombre,valor])
-    if 'x3' in nombre:
+    if 'x3' in nombre and valor == '1.0':
         x3.append([nombre,valor])
-    if 'x4' in nombre:
+    if 'x4' in nombre and valor == '1.0':
         x4.append([nombre,valor])
-    if 'y' in nombre:
+    if 'y' in nombre and valor != '0.0':
         y.append([nombre,valor])
-    if 'b' in nombre:
+    if 'b' in nombre and valor != '0.0':
         b.append([nombre,valor])
-    if 'q' in nombre:
+    if 'q' in nombre and valor != '0.0':
         q.append([nombre,valor])
-    if 's' in nombre:
+    if 's' in nombre and valor != '-0.0':
         s.append([nombre,valor])
   
-    
-for i in x1:
-    lista = []
-    nombre = i[0][2:]
-    parcial = []
-    for c in nombre:
-        if not c==',':
-            parcial.append(c)
-        if c==',' or ']':
-            lista.append(parcial)
-            parcial=[]
-    print(lista)
+
+
+
+for i in x1:   
+    aux = i[0].replace("x1", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.replace("(", "")
+    aux = aux.replace(")", "")
+    aux = aux.split(",")
+    temp = (int(aux[2]), int(aux[3]), int(aux[4]), int(aux[5]), int(aux[6]))
     dic['nombre'].append(i[0])
-    #dic['mes'].append()
-    #dic['contrato'].append()
-    #dic['plan'].append()
-    #dic['cliente'].append()
-    #dic['puerto'].append()
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append(aux[1])
+    dic['plan'].append(temp)
+    dic['cliente'].append("_")
+    dic['puerto'].append("_")
     dic['valor'].append(i[1])
-    
-    
+    dic['costo'].append(funcion_costo(1,temp)) 
+
+for i in x2:   
+    aux = i[0].replace("x2", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.replace("(", "")
+    aux = aux.replace(")", "")
+    aux = aux.split(",")
+    temp = (int(aux[2]), int(aux[3]), int(aux[4]), int(aux[5]), int(aux[6]))
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append(aux[1])
+    dic['plan'].append(temp)
+    dic['cliente'].append("_")
+    dic['puerto'].append("_")
+    dic['valor'].append(i[1])
+    dic['costo'].append(funcion_costo(2,temp)) 
+
+for i in x3:   
+    aux = i[0].replace("x3", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.replace("(", "")
+    aux = aux.replace(")", "")
+    aux = aux.split(",")
+    temp = (int(aux[2]), int(aux[3]), int(aux[4]), int(aux[5]), int(aux[6]))
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append(aux[1])
+    dic['plan'].append(temp)
+    dic['cliente'].append("_")
+    dic['puerto'].append("_")
+    dic['valor'].append(i[1])
+    dic['costo'].append(funcion_costo(3,temp))  
+
+
+for i in x4:   
+    aux = i[0].replace("x4", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.replace("(", "")
+    aux = aux.replace(")", "")
+    aux = aux.split(",")
+    temp = (int(aux[2]), int(aux[3]), int(aux[4]), int(aux[5]))
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append(aux[1])
+    dic['plan'].append(temp)
+    dic['cliente'].append("_")
+    dic['puerto'].append("_")
+    dic['valor'].append(i[1]) 
+    dic['costo'].append(funcion_costo(4,temp)) 
+
+for i in y:   
+    aux = i[0].replace("y", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.split(",")
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append("_")
+    dic['plan'].append("_")
+    dic['cliente'].append("_")
+    dic['puerto'].append(aux[1])
+    dic['valor'].append(i[1])
+    dic['costo'].append("_") 
+
+for i in b:   
+    aux = i[0].replace("b", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.split(",")
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append("_")
+    dic['plan'].append("_")
+    dic['cliente'].append("_")
+    dic['puerto'].append(aux[1])
+    dic['valor'].append(i[1])
+    dic['costo'].append("_")    
+
+for i in q:   
+    aux = i[0].replace("q", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    aux = aux.split(",")
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux[0]))
+    dic['contrato'].append("_")
+    dic['plan'].append("_")
+    dic['cliente'].append(aux[1])
+    dic['puerto'].append("_")
+    dic['valor'].append(i[1])
+    dic['costo'].append("_") 
+
+for i in s:   
+    aux = i[0].replace("s", "")
+    aux = aux.replace("[", "")
+    aux = aux.replace("]", "")
+    dic['nombre'].append(i[0])
+    dic['mes'].append(int(aux))
+    dic['contrato'].append("_")
+    dic['plan'].append("_")
+    dic['cliente'].append("_")
+    dic['puerto'].append("_")
+    dic['valor'].append(i[1])
+    dic['costo'].append("_") 
+
     
 
+print("--------")
+print(dic)
+print("--------")
+
+df=pd.DataFrame.from_dict(dic,orient='index').transpose()
+
+print(df.head(20))
+
+df.to_excel("output.xlsx") 
 
